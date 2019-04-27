@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: wordpress-np
+  namespace: default
+spec:
+  policyTypes:
+  - Egress
+  podSelector:
+    matchLabels:
+      app: wordpress
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except: 
+        - 192.168.0.0/24
