@@ -16,7 +16,7 @@ spec:
     spec:
       containers: 
       - name: wordpress
-        image: wordpress:4.9.4-php5.6-apache
+        image: wordpress:5.5.3-php7.4-apache
         env:
         - name: WORDPRESS_DB_HOST
           value: "mariadb"
