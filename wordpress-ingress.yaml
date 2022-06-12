@@ -1,17 +1,25 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: wordpress
   annotations:
-    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod-davidgehrig-com
+    konghq.com/protocols: "https"
+    konghq.com/https-redirect-status-code: "301"
 spec:
+  ingressClassName: kong
   tls:
   - secretName: davidgehrig-com-tls
+    hosts:
+    - www.davidgehrig.com
   rules:
   - host: www.davidgehrig.com
     http:
       paths:
       - path: /
+        pathType: ImplementationSpecific
         backend:
-          serviceName: wordpress
-          servicePort: 8030 
+          service: 
+            name: wordpress
+            port: 
+              number: 8030 
