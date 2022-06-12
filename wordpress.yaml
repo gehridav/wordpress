@@ -19,7 +19,7 @@ spec:
         image: wordpress:5.5.3-php7.4-apache
         env:
         - name: WORDPRESS_DB_HOST
-          value: "mariadb"
+          value: "$(MARIADB_SERVICE_HOST)"
         - name: WORDPRESS_DB_USER
           value: "wordpress"   
         - name: WORDPRESS_DB_PASSWORD
